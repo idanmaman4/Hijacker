@@ -10,7 +10,7 @@
 #include <Windows.h>
 
 
-
+// [CR] Remove New Lines!
 using ArgsList = std::vector<std::wstring>;
 
 class InjectorCommnadLineParser final
@@ -23,7 +23,7 @@ public:
 		ArgumentsNum
 	
 	};
-	
+	// [CR] Conventions - PascalCase Type names
 	struct command_line_args {
 		std::filesystem::path program_name;
 		std::filesystem::path injectee_name;
@@ -40,6 +40,7 @@ public:
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
 
 private:
+	// [CR] Naming - parse_arguments_string
 	static NODISCARD ArgsList parse_args(const std::wstring& command_line);
 
 	std::wstring m_command_line;

@@ -31,9 +31,10 @@ Registry::~Registry()
 
 void Registry::write(const std::string& value_name, const std::string& value_conent)
 {
-
+	// [CR] Remove New Line
 	static constexpr DWORD ALLOWD_DW_TYPE = REG_SZ;
 	static constexpr DWORD DEFAULT_RESERVED = 0;
+	// [CR] Conventions - First argument inline, rest on new line aligned to it
 	LSTATUS status = RegSetValueExA(\
 		m_key,
 		value_name.c_str(), 
@@ -78,6 +79,8 @@ HKEY Registry::open_registry_key(const Registry& base_key ,  const std::filesyst
 	return result;
 }
 
+// [CR] Creative, I like it. The "natural" way to do this would have been
+//		to create a RootRegistryKey class to handle this
 Registry::Registry(HKEY key) : m_key(key), m_owns_handle(false)
 {
 }

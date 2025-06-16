@@ -9,6 +9,8 @@
 #include <iostream>
 #include <Windows.h>
 
+// [CR] General - File name - Source is not indicative, use Main
+// [CR] Implementation - code duplication
 #define SMART_CATCH(TYPE,RETURN_CODE) catch(TYPE& exception){\
     DbgHelper::show_dbg_message(exception.what());\
     return static_cast<int>(RETURN_CODE);\

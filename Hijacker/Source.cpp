@@ -24,7 +24,7 @@ enum class STATUS_CODE {
     UNKOWN
 
 };
-
+// [CR] Nice. Now do the same, but start the original program
 int WINAPI WinMain(
     UNUSED _In_ HINSTANCE hInstance,
     UNUSED _In_opt_ HINSTANCE hPrevInstance,
