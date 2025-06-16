@@ -12,6 +12,6 @@ CommandLineArgs InjectorCommnadLineParser::get_args() const
         throw GenericException(std::format("Excpected {} args", static_cast<int>(Arguments::ArgumentsNum)));
     }
 
-    return CommandLineArgs(arugments[static_cast<int>(Arguments::ProgramName)], arugments[static_cast<int>(Arguments::InjecteePath)]);
+    return { std::move(arugments[static_cast<int>(Arguments::ProgramName)]), std::move(arugments[static_cast<int>(Arguments::InjecteePath)]) };
 }
 

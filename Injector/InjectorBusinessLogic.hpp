@@ -1,7 +1,6 @@
 #pragma once
 
 #include "InjectorCommnadLineParser.hpp"
-#include "InjectorCommnadLineParser.hpp"
 #include "Registry.hpp"
 
 #include <filesystem>

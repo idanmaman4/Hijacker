@@ -8,18 +8,17 @@
 #include <format>
 #include <ranges>
 #include <regex>
-#include <sstr>
+#include <sstream>
 
 
 class Process final
 {
 public:
-	void wait(size_t time = INFINITE);
-	~Process();
 	Process(Process&) = default;
 	Process(Process&& ) = default;
-	static Process create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments); 
-
+	void wait(size_t time = INFINITE);
+	~Process();
+	static NODISCARD Process create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments); 
 	Process& operator=(Process& ) = delete;
 	Process operator= (Process&& ) = delete;
 

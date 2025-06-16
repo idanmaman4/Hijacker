@@ -10,6 +10,7 @@
 
 
 using SafeNativeParsedArguments = std::unique_ptr<LPWSTR[], decltype(&::LocalFree)>;
+static constexpr auto make_safe_native_parsed_arguments = [](LPWSTR* argument) {return SafeNativeParsedArguments{argument, LocalFree };};
 
 template <typename T>
 class BaseParser
@@ -60,7 +61,7 @@ inline NODISCARD BaseParser<T>::ParsedArguments BaseParser<T>::parse_arguments_s
 	if (command_line .empty()) {
 	        throw GenericException("Unable To parse empty commandline!");
 	}
-	SafeNativeParsedArguments arguments{ CommandLineToArgvW(command_line.c_str(), &nubmer_of_arguments), ::LocalFree };
+	SafeNativeParsedArguments arguments = make_safe_native_parsed_arguments(CommandLineToArgvW(command_line.c_str(), &nubmer_of_arguments));
     if (!arguments) {
         throw WinApiGeneralException("Unable To parse command Line!");
     }

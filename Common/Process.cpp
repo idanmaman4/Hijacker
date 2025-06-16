@@ -26,10 +26,10 @@ void Process::wait(size_t time)
 {
     DWORD res = WaitForSingleObject(m_handle,static_cast<DWORD>(time));
     if (res == WAIT_FAILED) {
-            throw WinApiGeneralException("Wait has been failed!");
+        throw WinApiGeneralException("Wait has been failed!");
     }
     if (res == WAIT_ABANDONED) {
-            throw WinApiGeneralException("TimeOUT!");
+        throw WinApiGeneralException("TimeOUT!");
     }
 }
 
