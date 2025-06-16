@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Injectee", "Hijacker\Hijacker.vcxproj", "{AFCCE787-A355-4C7A-8DED-FF7714A646A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Common\Common.vcxitems", "{9F50F3DE-D0B3-4860-9303-C5453456D584}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Injector", "Injector\Injector.vcxproj", "{4735D077-B1C7-4296-85EA-42BEE988B109}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Debug|x64.ActiveCfg = Debug|x64
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Debug|x64.Build.0 = Debug|x64
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Debug|x86.ActiveCfg = Debug|Win32
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Debug|x86.Build.0 = Debug|Win32
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Release|x64.ActiveCfg = Release|x64
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Release|x64.Build.0 = Release|x64
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Release|x86.ActiveCfg = Release|Win32
+		{AFCCE787-A355-4C7A-8DED-FF7714A646A1}.Release|x86.Build.0 = Release|Win32
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Debug|x64.ActiveCfg = Debug|x64
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Debug|x64.Build.0 = Debug|x64
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Debug|x86.ActiveCfg = Debug|Win32
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Debug|x86.Build.0 = Debug|Win32
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Release|x64.ActiveCfg = Release|x64
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Release|x64.Build.0 = Release|x64
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Release|x86.ActiveCfg = Release|Win32
+		{4735D077-B1C7-4296-85EA-42BEE988B109}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A70F780-16E6-4B9D-9C3E-029D61EA39A3}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Common\Common.vcxitems*{4735d077-b1c7-4296-85ea-42bee988b109}*SharedItemsImports = 4
+		Common\Common.vcxitems*{9f50f3de-d0b3-4860-9303-c5453456d584}*SharedItemsImports = 9
+		Common\Common.vcxitems*{afcce787-a355-4c7a-8ded-ff7714a646a1}*SharedItemsImports = 4
+	EndGlobalSection
+EndGlobal

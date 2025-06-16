@@ -1,0 +1,83 @@
+#pragma once
+
+#include "Registry.hpp"
+
+
+const Registry Registry::REGISTRY_CLASSES_ROOT{HKEY_CLASSES_ROOT};
+const Registry Registry::REGISTRY_CURRENT_CONFIG{HKEY_CURRENT_CONFIG};
+const Registry Registry::REGISTRY_CURRENT_USER{HKEY_CURRENT_USER};
+const Registry Registry::REGISTRY_LOCAL_MACHINE {HKEY_LOCAL_MACHINE};
+const Registry Registry::REGISTRY_USERS{HKEY_USERS};
+
+
+
+Registry::Registry(const Registry& parent_key, const std::filesystem::path& registry_path) : m_key(open_registry_key(parent_key,registry_path)), m_owns_handle(true)
+{
+}
+
+Registry::Registry(const std::filesystem::path& registry_path) : m_key(open_registry_key(REGISTRY_CURRENT_USER,registry_path)),m_owns_handle(true)
+{
+}
+
+Registry::~Registry()
+{
+	try {
+		if (m_owns_handle) {
+			RegCloseKey(m_key);
+		}		
+	}
+	catch (...) {}
+}
+
+void Registry::write(const std::string& value_name, const std::string& value_conent)
+{
+
+	static constexpr DWORD ALLOWD_DW_TYPE = REG_SZ;
+	static constexpr DWORD DEFAULT_RESERVED = 0;
+	LSTATUS status = RegSetValueExA(\
+		m_key,
+		value_name.c_str(), 
+		DEFAULT_RESERVED,
+		ALLOWD_DW_TYPE, 
+		static_cast<BYTE*>(static_cast<void*>(const_cast<char *>(value_conent.c_str()))), 
+		static_cast<DWORD>(value_conent.size()) + 1
+	);
+	if (NT_ERROR(status)) {
+		throw WinApiGeneralException("Registry Write Error!");
+	}
+}
+
+Registry Registry::create_key(const std::string& key_name)
+{
+	HKEY result;
+	LSTATUS status = RegCreateKeyA( 
+		m_key,
+		key_name.c_str(),
+		&result
+	);
+	if (NT_ERROR(status)) {
+		throw WinApiGeneralException("Registry Creation Error!");
+	}
+
+	return Registry{ result };
+}
+
+HKEY Registry::open_registry_key(const Registry& base_key ,  const std::filesystem::path& registry_path)
+{
+
+	HKEY result;
+	LSTATUS status = RegOpenKeyA( 
+		base_key.m_key,
+		registry_path.string().c_str(),
+		&result
+	);
+	if (NT_ERROR(status)) {
+		throw WinApiGeneralException("Registry Open Error!");
+	}
+
+	return result;
+}
+
+Registry::Registry(HKEY key) : m_key(key), m_owns_handle(false)
+{
+}
