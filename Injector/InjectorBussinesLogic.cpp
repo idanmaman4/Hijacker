@@ -5,7 +5,7 @@ InjectorBusinessLogic::InjectorBusinessLogic(const std::filesystem::path& progra
 {
 }
 
-void InjectorBusinessLogic::main_logic() const
+void InjectorBusinessLogic::main_logic()
 {
     static constexpr std::string_view IFEO_REGISTGRY_PATH = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options";
     Registry parent_key(Registry::REGISTRY_LOCAL_MACHINE, IFEO_REGISTGRY_PATH);

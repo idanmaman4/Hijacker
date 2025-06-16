@@ -11,7 +11,7 @@ class InjectorBusinessLogic final
 public:
 	explicit InjectorBusinessLogic(const std::filesystem::path& program_name,const std::filesystem::path& injectee);
 	
-	void main_logic() const;
+	void main_logic();
 
 	~InjectorBusinessLogic() = default;
 

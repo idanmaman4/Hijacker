@@ -10,7 +10,7 @@ class InjecteeBussinesLogic final
 	public:
 	explicit InjecteeBussinesLogic(const std::filesystem::path& program_name,const ArgumentsList& arguments);
 	
-	void main_logic() const;
+	void main_logic();
 
 	~InjecteeBussinesLogic() = default;
 

@@ -1,6 +1,6 @@
 #include "Process.hpp"
 
-std::wstring escape_string(const std::wstring& string_to_escape) {
+std::wstring Process::escape_string_for_commandline(const std::wstring& string_to_escape){
     static const std::wregex pattern(L"\"");
     static const std::wstring replacement(L"\\\"");
 
@@ -10,7 +10,9 @@ std::wstring escape_string(const std::wstring& string_to_escape) {
 Process::~Process()
 {
     try {
-        CloseHandle(m_handle);
+        if (m_handle != INVALID_HANDLE_VALUE) {
+            CloseHandle(m_handle);
+        }
     }
     catch (...) {}
 }
@@ -21,6 +23,7 @@ void Process::stop_debugging(DWORD process_id)
         throw WinApiGeneralException("Can't detach from process!");
     }
 }
+
 
 void Process::wait(size_t time)
 {
@@ -35,13 +38,13 @@ void Process::wait(size_t time)
 
 Process Process::create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments)
 {
-    STARTUPINFO si;
-    PROCESS_INFORMATION pi;
-    ZeroMemory(&si, sizeof(si));
-    si.cb = sizeof(si);
-    ZeroMemory(&pi, sizeof(pi));
+    STARTUPINFO startup_information;
+    PROCESS_INFORMATION process_information;
     std::wstringstream command_line_string;
-    for (const auto& join_arg : arguments | std::views::transform(escape_string) | std::views::join_with(' ')) {
+    ZeroMemory(&startup_information, sizeof(startup_information));
+    startup_information.cb = sizeof(startup_information);
+    ZeroMemory(&process_information, sizeof(process_information));
+    for (const auto& join_arg : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
         command_line_string << join_arg;
     }
     static constexpr LPSECURITY_ATTRIBUTES DEFAULT_SECURITY_ATTRIBUTES = NULL;
@@ -57,18 +60,24 @@ Process Process::create_process_debug(const std::wstring& process_name, const Ar
         DEFAULT_DW_TYPE,
         DEFAULT_INHERIT_ENVIROMENT,
         DEFAULT_CURNRENT_DIRECTORY,
-        &si,
-        &pi
+        &startup_information,
+        &process_information
     );
     if (!status) {
         throw WinApiGeneralException("Can't Create Process");
     }
-    CloseHandle(pi.hThread);
-    stop_debugging(pi.dwProcessId);
+    CloseHandle(process_information.hThread); // to prevent a leak...
+    stop_debugging(process_information.dwProcessId);
 
-    return Process(pi.hProcess);
+    return Process(process_information.hProcess);
 }
 
 Process::Process(HANDLE handle_to_process) : m_handle(handle_to_process)
 {
+    
+}
+
+Process::Process(Process&& process) : m_handle(std::exchange(process.m_handle, INVALID_HANDLE_VALUE))
+{
+    
 }
