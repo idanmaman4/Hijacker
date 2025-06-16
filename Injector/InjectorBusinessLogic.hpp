@@ -3,15 +3,14 @@
 #include "InjectorCommnadLineParser.hpp"
 #include "InjectorCommnadLineParser.hpp"
 #include "Registry.hpp"
-// [CR] Conventions - space after include
-#include<filesystem>
 
-// [CR] Deffenivness - final
-class InjectorBusinessLogic
+#include <filesystem>
+
+
+class InjectorBusinessLogic final
 {
 public:
-	// [CR] Implementation - pas by const&
-	explicit InjectorBusinessLogic(std::filesystem::path program_name,std::filesystem::path injectee );
+	explicit InjectorBusinessLogic(const std::filesystem::path& program_name,const std::filesystem::path& injectee);
 	
 	void main_logic() const;
 

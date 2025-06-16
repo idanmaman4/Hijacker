@@ -7,23 +7,11 @@
 #include "InjectorCommnadLineParser.hpp"
 
 #include <iostream>
-#include <Windows.h>
 
-// [CR] General - File name - Source is not indicative, use Main
-// [CR] Implementation - code duplication
-#define SMART_CATCH(TYPE,RETURN_CODE) catch(TYPE& exception){\
-    DbgHelper::show_dbg_message(exception.what());\
-    return static_cast<int>(RETURN_CODE);\
-    }
-
-#define SMART_CATCH_ELSE() catch (...) {\
-        DbgHelper::show_dbg_message("UNKWON EXCEPTION!");\
-        return static_cast<int>(STATUS_CODE::UNKOWN);\
-    }
 
 enum class STATUS_CODE {
     SUCCESS = 0 ,
-    FAILED_ARGS , 
+    GENRIC_EXCEPTION , 
     WINAPI_ERROR,
     UNKOWN
 
@@ -37,11 +25,12 @@ int WINAPI wWinMain(
 ) {
     try{
         InjectorCommnadLineParser cmd_parser(lpCmdLine);
-        InjectorCommnadLineParser::command_line_args parsed_args = cmd_parser.get_args();
+        CommandLineArgs parsed_args = cmd_parser.get_args();
         InjectorBusinessLogic business_logic(parsed_args.program_name, parsed_args.injectee_name);
         business_logic.main_logic();
     }
     SMART_CATCH(WinApiGeneralException, STATUS_CODE::WINAPI_ERROR)
+    SMART_CATCH(GenericException, STATUS_CODE::GENRIC_EXCEPTION)
     SMART_CATCH_ELSE()
 
     return static_cast<int>(STATUS_CODE::SUCCESS);

@@ -4,7 +4,6 @@
 
 #include <string>
 #include <format>
-#include <Windows.h>
 
 
 class GenericException final

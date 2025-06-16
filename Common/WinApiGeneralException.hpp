@@ -4,7 +4,7 @@
 
 #include <string>
 #include <format>
-#include <Windows.h>
+
 
 
 class WinApiGeneralException final

@@ -1,9 +1,8 @@
-#pragma once
+ #pragma once
 
 #include "WinApiGeneralException.hpp"
 
 #include <string>
-#include <Windows.h>
 
 
 class SmartMessageBox final

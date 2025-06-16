@@ -29,29 +29,26 @@ Registry::~Registry()
 	catch (...) {}
 }
 
-void Registry::write(const std::string& value_name, const std::string& value_conent)
+void Registry::write(const std::wstring& value_name, const std::wstring& value_conent)
 {
-	// [CR] Remove New Line
 	static constexpr DWORD ALLOWD_DW_TYPE = REG_SZ;
 	static constexpr DWORD DEFAULT_RESERVED = 0;
-	// [CR] Conventions - First argument inline, rest on new line aligned to it
-	LSTATUS status = RegSetValueExA(\
-		m_key,
+	LSTATUS status = RegSetValueExW(m_key,
 		value_name.c_str(), 
 		DEFAULT_RESERVED,
 		ALLOWD_DW_TYPE, 
-		static_cast<BYTE*>(static_cast<void*>(const_cast<char *>(value_conent.c_str()))), 
-		static_cast<DWORD>(value_conent.size()) + 1
+		static_cast<BYTE*>(static_cast<void*>(const_cast<wchar_t *>(value_conent.c_str()))), 
+		(static_cast<DWORD>(value_conent.size()) + 1) * sizeof(wchar_t)
 	);
 	if (NT_ERROR(status)) {
 		throw WinApiGeneralException("Registry Write Error!");
 	}
 }
 
-Registry Registry::create_key(const std::string& key_name)
+Registry Registry::create_key(const std::wstring& key_name)
 {
 	HKEY result;
-	LSTATUS status = RegCreateKeyA( 
+	LSTATUS status = RegCreateKeyW( 
 		m_key,
 		key_name.c_str(),
 		&result
@@ -79,8 +76,6 @@ HKEY Registry::open_registry_key(const Registry& base_key ,  const std::filesyst
 	return result;
 }
 
-// [CR] Creative, I like it. The "natural" way to do this would have been
-//		to create a RootRegistryKey class to handle this
 Registry::Registry(HKEY key) : m_key(key), m_owns_handle(false)
 {
 }

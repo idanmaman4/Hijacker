@@ -2,7 +2,6 @@
 
 #include "SmartMessageBox.hpp"
 
-#include <Windows.h>
 #include <string>
 
 
