@@ -7,8 +7,8 @@ void DbgHelper::show_dbg_message(const std::string& message)
 				SmartMessageBox  message_box("DBG_HELPER", message);
 				message_box.show();
 			}
-		catch (...){
-		}
+			catch (...){
+			}
 		}
 }
 
