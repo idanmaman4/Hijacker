@@ -20,7 +20,7 @@
     }
 
 #define SMART_CATCH_ELSE() catch (...) {\
-        DbgHelper::show_dbg_message("UNKWON EXCEPTION!");\
+        DbgHelper::show_dbg_message(L"UNKWON EXCEPTION!");\
         return static_cast<int>(STATUS_CODE::UNKOWN);\
     }
 

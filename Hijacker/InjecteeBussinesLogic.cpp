@@ -8,9 +8,9 @@ InjecteeBussinesLogic::InjecteeBussinesLogic(const std::filesystem::path& progra
 
 void InjecteeBussinesLogic::main_logic()
 {
-    SmartMessageBox message_box("INJECTEE", "Injected...");
-    message_box.show();
-    // [CR] Design - Why is this not a dedicated ctor?
+    static const std::wstring MESSAGE_BOX_TILE = L"INJECTEE";
+    static const std::wstring MESSAGE_BOX_MESSAGE = L"Injected...";
+    UserOutput::show_messagebox(MESSAGE_BOX_TILE, MESSAGE_BOX_MESSAGE);
     Process process{ Process::create_process_debug(m_program_name.wstring(), m_arguments) };
     process.wait();
 }

@@ -27,12 +27,14 @@ public:
 	};
 
 	explicit InjectorCommnadLineParser(const std::wstring& command_line);
-	NODISCARD CommandLineArgs get_args() const;
 	~InjectorCommnadLineParser() = default;
 
 	InjectorCommnadLineParser(InjectorCommnadLineParser&) = delete;
 	InjectorCommnadLineParser(InjectorCommnadLineParser&&) = delete;
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&) = delete;
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
+private:
+	NODISCARD CommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
+	NODISCARD bool check_arguments_correction(ArgumentsList& arguments_raw) const override;
 };
 

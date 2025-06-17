@@ -9,8 +9,8 @@
 class GenericException final
 {
 public:
-	explicit GenericException(const std::string& message);
-	NODISCARD std::string what() const; 
+	explicit GenericException(const std::wstring& message);
+	NODISCARD std::wstring what() const; 
 	GenericException(GenericException&) = default;
 	GenericException(GenericException&&) = default;
 	~GenericException() = default;
@@ -19,8 +19,8 @@ public:
 	GenericException& operator= (GenericException&&) = delete;
 
 private:
-	static NODISCARD std::string create_message(const std::string&  message);
+	static NODISCARD std::wstring create_message(const std::wstring&  message);
 
-	std::string m_message;
+	std::wstring m_message;
 };
 

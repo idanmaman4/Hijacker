@@ -24,7 +24,7 @@ int WINAPI wWinMain(
 ) {
     try{
         InjecteeCommandLineParser cmd_parser(lpCmdLine);
-        InjecteeCommandLineArgs parsed_args = cmd_parser.get_args();
+        InjecteeCommandLineArgs parsed_args = cmd_parser.get_arguments();
         InjecteeBussinesLogic bussines_logic(parsed_args.program_name, parsed_args.arguments);
         bussines_logic.main_logic();
     }

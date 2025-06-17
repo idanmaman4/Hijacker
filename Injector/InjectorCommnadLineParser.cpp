@@ -5,13 +5,13 @@ InjectorCommnadLineParser::InjectorCommnadLineParser(const std::wstring& command
 
 }
 
-CommandLineArgs InjectorCommnadLineParser::get_args() const
+CommandLineArgs InjectorCommnadLineParser::get_arguments_parsing(ArgumentsList& arguments_raw) const
 {
-    ArgumentsList arugments = get_argument_list();
-    if (arugments.size() != static_cast<int>(Arguments::ArgumentsNum)) {
-        throw GenericException(std::format("Excpected {} args", static_cast<int>(Arguments::ArgumentsNum)));
-    }
+    return { std::move(arguments_raw[static_cast<int>(Arguments::ProgramName)]), std::move(arguments_raw[static_cast<int>(Arguments::InjecteePath)]) };
+}
 
-    return { std::move(arugments[static_cast<int>(Arguments::ProgramName)]), std::move(arugments[static_cast<int>(Arguments::InjecteePath)]) };
+bool InjectorCommnadLineParser::check_arguments_correction(ArgumentsList& arguments_raw) const
+{
+    return arguments_raw.size() == static_cast<int>(Arguments::ArgumentsNum);
 }
 

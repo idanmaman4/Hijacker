@@ -9,8 +9,6 @@ const Registry Registry::REGISTRY_CURRENT_USER{HKEY_CURRENT_USER};
 const Registry Registry::REGISTRY_LOCAL_MACHINE {HKEY_LOCAL_MACHINE};
 const Registry Registry::REGISTRY_USERS{HKEY_USERS};
 
-
-// [CR] Remove New Line
 Registry::Registry(const Registry& parent_key, const std::filesystem::path& registry_path) : 
 	m_key(open_registry_key(parent_key,registry_path)), 
 	m_owns_handle(true)
@@ -45,8 +43,7 @@ void Registry::write(const std::wstring& value_name, const std::wstring& value_c
 		(static_cast<DWORD>(value_conent.size()) + 1) * sizeof(wchar_t)
 	);
 	if (NT_ERROR(status)) {
-		// [CR] Implementation - Loosing status information in the exception
-		throw WinApiGeneralException("Registry Write Error!");
+		throw WinApiGeneralException(L"Registry Write Error!", status);
 	}
 }
 
@@ -59,24 +56,22 @@ Registry Registry::create_key(const std::wstring& key_name)
 		&result
 	);
 	if (NT_ERROR(status)) {
-		throw WinApiGeneralException("Registry Creation Error!");
+		throw WinApiGeneralException(L"Registry Creation Error!", status);
 	}
 
 	return Registry{ result };
 }
-// [CR] Conventions - still problem with spaces
-HKEY Registry::open_registry_key(const Registry& base_key ,  const std::filesystem::path& registry_path)
+
+HKEY Registry::open_registry_key(const Registry& base_key, const std::filesystem::path& registry_path)
 {
-// [CR] Remove New Lines
 	HKEY result;
-	// [CR] Implementation - Use RegOpenKeyW
-	LSTATUS status = RegOpenKeyA( 
+	LSTATUS status = RegOpenKeyW( 
 		base_key.m_key,
-		registry_path.string().c_str(),
+		registry_path.wstring().c_str(),
 		&result
 	);
 	if (NT_ERROR(status)) {
-		throw WinApiGeneralException("Registry Open Error!");
+		throw WinApiGeneralException(L"Registry Open Error!", status);
 	}
 
 	return result;

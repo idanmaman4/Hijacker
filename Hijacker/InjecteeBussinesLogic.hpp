@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.hpp"
-#include "SmartMessageBox.hpp"
+#include "UserOutput.hpp"
 #include "Process.hpp"
 
 #include <filesystem>

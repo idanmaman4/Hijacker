@@ -4,14 +4,14 @@ InjecteeCommandLineParser::InjecteeCommandLineParser(const std::wstring& command
 {
 }
 
-NODISCARD InjecteeCommandLineArgs InjecteeCommandLineParser::get_args() const
+InjecteeCommandLineArgs InjecteeCommandLineParser::get_arguments_parsing(ArgumentsList& arguments_raw) const
 {
-	// [CR] Design - Large code duplication with other get_args implementations
-	ArgumentsList arguments = get_argument_list();
-	if (arguments.size() < static_cast<int>(Arguments::MinimumArgumentsCount)) {
-		throw GenericException("There is too less arguments!!");
-	}
-	std::filesystem::path program_name = arguments[static_cast<int>(Arguments::ProgramName)];
+	std::filesystem::path program_name = arguments_raw[static_cast<int>(Arguments::ProgramName)];
 
-	return {std::move(program_name), std::move(arguments)}; 
+	return {std::move(program_name), std::move(arguments_raw)};
+}
+
+bool InjecteeCommandLineParser::check_arguments_correction(ArgumentsList& arguments_raw) const
+{
+	return arguments_raw.size() >= static_cast<int>(Arguments::MinimumArgumentsCount);
 }

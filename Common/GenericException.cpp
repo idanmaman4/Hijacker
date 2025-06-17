@@ -1,16 +1,16 @@
 #include "GenericException.hpp"
 
-GenericException::GenericException(const std::string& message) : 
+GenericException::GenericException(const std::wstring& message) : 
 	m_message(create_message(message))
 {
 }
 
-std::string GenericException::what() const
+std::wstring GenericException::what() const
 {
 	return m_message;
 }
 
-std::string GenericException::create_message(const std::string& message)
+std::wstring GenericException::create_message(const std::wstring& message)
 {
-	return  std::format("GeneralException : {}", message);
+	return  std::format(L"GeneralException : {}", message);
 }

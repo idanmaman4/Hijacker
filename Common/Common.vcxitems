@@ -20,7 +20,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GenericException.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Process.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Registry.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SmartMessageBox.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UserOutput.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WinApiGeneralException.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -28,7 +28,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GenericException.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Process.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Registry.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SmartMessageBox.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UserOutput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinApiGeneralException.cpp" />
   </ItemGroup>
 </Project>
