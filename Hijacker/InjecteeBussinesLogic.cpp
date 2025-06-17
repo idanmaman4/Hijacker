@@ -1,6 +1,8 @@
 #include "InjecteeBussinesLogic.hpp"
 
-InjecteeBussinesLogic::InjecteeBussinesLogic(const std::filesystem::path& program_name, const ArgumentsList& arguments) : m_program_name(program_name), m_arguments(arguments)
+InjecteeBussinesLogic::InjecteeBussinesLogic(const std::filesystem::path& program_name, const ArgumentsList& arguments) : 
+    m_program_name(program_name), 
+    m_arguments(arguments)
 {
 }
 

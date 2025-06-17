@@ -1,6 +1,8 @@
 #include "SmartMessageBox.hpp"
 
-SmartMessageBox::SmartMessageBox(const std::string& title, const std::string& message) : m_message(message), m_title(title)
+SmartMessageBox::SmartMessageBox(const std::string& title, const std::string& message) : 
+	m_message(message), 
+	m_title(title)
 {
 }
 

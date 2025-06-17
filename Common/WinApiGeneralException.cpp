@@ -1,6 +1,7 @@
 #include "WinApiGeneralException.hpp"
 
-WinApiGeneralException::WinApiGeneralException(const std::string& message) : m_message(create_message(message))
+WinApiGeneralException::WinApiGeneralException(const std::string& message) : 
+	m_message(create_message(message))
 {
 }
 

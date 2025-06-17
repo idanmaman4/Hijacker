@@ -44,7 +44,8 @@ private:
 
 
 template<typename T>
-inline BaseParser<T>::BaseParser(const std::wstring& command_line) : m_command_parsed(parse_arguments_string(command_line))
+inline BaseParser<T>::BaseParser(const std::wstring& command_line) : 
+	m_command_parsed(parse_arguments_string(command_line))
 {
 }
 

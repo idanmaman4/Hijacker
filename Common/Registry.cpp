@@ -11,11 +11,15 @@ const Registry Registry::REGISTRY_USERS{HKEY_USERS};
 
 
 
-Registry::Registry(const Registry& parent_key, const std::filesystem::path& registry_path) : m_key(open_registry_key(parent_key,registry_path)), m_owns_handle(true)
+Registry::Registry(const Registry& parent_key, const std::filesystem::path& registry_path) : 
+	m_key(open_registry_key(parent_key,registry_path)), 
+	m_owns_handle(true)
 {
 }
 
-Registry::Registry(const std::filesystem::path& registry_path) : m_key(open_registry_key(REGISTRY_CURRENT_USER,registry_path)),m_owns_handle(true)
+Registry::Registry(const std::filesystem::path& registry_path) : 
+	m_key(open_registry_key(REGISTRY_CURRENT_USER,registry_path)),
+	m_owns_handle(true)
 {
 }
 
@@ -76,6 +80,8 @@ HKEY Registry::open_registry_key(const Registry& base_key ,  const std::filesyst
 	return result;
 }
 
-Registry::Registry(HKEY key) : m_key(key), m_owns_handle(false)
+Registry::Registry(HKEY key) : 
+	m_key(key), 
+	m_owns_handle(false)
 {
 }

@@ -1,6 +1,7 @@
 #include "GenericException.hpp"
 
-GenericException::GenericException(const std::string& message) : m_message(create_message(message))
+GenericException::GenericException(const std::string& message) : 
+	m_message(create_message(message))
 {
 }
 

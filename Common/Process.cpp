@@ -71,12 +71,14 @@ Process Process::create_process_debug(const std::wstring& process_name, const Ar
     return Process(process_information.hProcess);
 }
 
-Process::Process(HANDLE handle_to_process) : m_handle(handle_to_process)
+Process::Process(HANDLE handle_to_process) : 
+    m_handle(handle_to_process)
 {
     
 }
 
-Process::Process(Process&& process) : m_handle(std::exchange(process.m_handle, INVALID_HANDLE_VALUE))
+Process::Process(Process&& process) : 
+    m_handle(std::exchange(process.m_handle, INVALID_HANDLE_VALUE))
 {
     
 }

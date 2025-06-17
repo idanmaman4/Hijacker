@@ -1,7 +1,8 @@
 #include "InjectorBusinessLogic.hpp"
 
-// [CR] Conventions - each intialized member on a new line
-InjectorBusinessLogic::InjectorBusinessLogic(const std::filesystem::path& program_name,const std::filesystem::path& injectee) : m_program_name(program_name), m_injectee(injectee)
+InjectorBusinessLogic::InjectorBusinessLogic(const std::filesystem::path& program_name,const std::filesystem::path& injectee) : 
+    m_program_name(program_name), 
+    m_injectee(injectee)
 {
 }
 
