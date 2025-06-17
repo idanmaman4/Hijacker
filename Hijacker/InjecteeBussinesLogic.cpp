@@ -10,6 +10,7 @@ void InjecteeBussinesLogic::main_logic()
 {
     SmartMessageBox message_box("INJECTEE", "Injected...");
     message_box.show();
+    // [CR] Design - Why is this not a dedicated ctor?
     Process process{ Process::create_process_debug(m_program_name.wstring(), m_arguments) };
     process.wait();
 }

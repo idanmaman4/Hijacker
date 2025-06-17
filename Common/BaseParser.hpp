@@ -8,7 +8,8 @@
 #include <vector>
 #include <filesystem>
 
-
+// [CR] Remove New Line
+// [CR] O... K......
 using SafeNativeParsedArguments = std::unique_ptr<LPWSTR[], decltype(&::LocalFree)>;
 static constexpr auto make_safe_native_parsed_arguments = [](LPWSTR* argument) {return SafeNativeParsedArguments{argument, LocalFree };};
 
@@ -18,7 +19,7 @@ class BaseParser
 public:
 	
 	explicit BaseParser(const std::wstring& command_line);
-
+	// [CR] Naming - get_argument
 	virtual NODISCARD T get_args() const = 0;
 
 	virtual ~BaseParser() = default;

@@ -6,6 +6,7 @@ InjecteeCommandLineParser::InjecteeCommandLineParser(const std::wstring& command
 
 NODISCARD InjecteeCommandLineArgs InjecteeCommandLineParser::get_args() const
 {
+	// [CR] Design - Large code duplication with other get_args implementations
 	ArgumentsList arguments = get_argument_list();
 	if (arguments.size() < static_cast<int>(Arguments::MinimumArgumentsCount)) {
 		throw GenericException("There is too less arguments!!");

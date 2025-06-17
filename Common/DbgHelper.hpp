@@ -4,7 +4,7 @@
 
 #include <string>
 
-
+// [CR] Implementation - Delete all generated functions
 class DbgHelper final
 {
 public:
