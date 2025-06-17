@@ -24,7 +24,6 @@ void Process::stop_debugging(DWORD process_id)
     }
 }
 
-
 void Process::wait(size_t time)
 {
     DWORD res = WaitForSingleObject(m_handle,static_cast<DWORD>(time));

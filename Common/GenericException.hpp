@@ -11,7 +11,6 @@ class GenericException final
 public:
 	explicit GenericException(const std::string& message);
 	NODISCARD std::string what() const; 
-
 	GenericException(GenericException&) = default;
 	GenericException(GenericException&&) = default;
 	~GenericException() = default;

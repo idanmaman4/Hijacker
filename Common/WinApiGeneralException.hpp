@@ -11,11 +11,10 @@ class WinApiGeneralException final
 public:
 	explicit WinApiGeneralException(const std::string& message);
 	NODISCARD std::string what() const; 
-
 	WinApiGeneralException(WinApiGeneralException&) = default;
 	WinApiGeneralException(WinApiGeneralException&&) = default;
 	~WinApiGeneralException() = default;
-	
+
 	WinApiGeneralException& operator= (WinApiGeneralException&) = delete;
 	WinApiGeneralException& operator= (WinApiGeneralException&&) = delete;
 

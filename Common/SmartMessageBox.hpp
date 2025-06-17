@@ -10,7 +10,6 @@ class SmartMessageBox final
 public:
 	explicit SmartMessageBox(const std::string& title, const std::string& message);
 	void show() const; 
-
 	~SmartMessageBox() = default;
 
 	SmartMessageBox(SmartMessageBox&) = delete;
