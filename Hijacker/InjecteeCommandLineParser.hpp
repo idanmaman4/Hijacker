@@ -10,7 +10,6 @@
 #include <vector>
 #include <filesystem>
 
-using ArgumentsList = std::vector<std::wstring>;
 
 struct InjecteeCommandLineArgs {//ADT : just holds data without any logic!
 		std::filesystem::path program_name;

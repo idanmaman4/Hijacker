@@ -18,7 +18,6 @@ struct CommandLineArgs {//ADT : just holds data without any logic!
 class InjectorCommnadLineParser final : public BaseParser<CommandLineArgs>
 {
 public:
-	
 	enum class Arguments {
 		ProgramName=0,
 		InjecteePath,
@@ -33,6 +32,7 @@ public:
 	InjectorCommnadLineParser(InjectorCommnadLineParser&&) = delete;
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&) = delete;
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
+
 private:
 	NODISCARD CommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
 	NODISCARD bool check_arguments_correction(ArgumentsList& arguments_raw) const override;

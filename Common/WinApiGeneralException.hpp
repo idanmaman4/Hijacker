@@ -11,7 +11,6 @@ class WinApiGeneralException final
 public:
 	explicit WinApiGeneralException(const std::wstring& message);
 	explicit WinApiGeneralException(const std::wstring& message, NTSTATUS nt_status);
-
 	NODISCARD std::wstring what() const; 
 	WinApiGeneralException(WinApiGeneralException&) = default;
 	WinApiGeneralException(WinApiGeneralException&&) = default;

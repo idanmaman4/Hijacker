@@ -1,4 +1,5 @@
 #pragma once
+
 #include "defines.hpp"
 #include "UserOutput.hpp"
 #include "Process.hpp"

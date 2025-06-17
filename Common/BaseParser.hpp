@@ -8,6 +8,7 @@
 #include <vector>
 #include <filesystem>
 
+
 using SafeNativeParsedArguments = std::unique_ptr<LPWSTR[], decltype(&::LocalFree)>;
 static constexpr auto make_safe_native_parsed_arguments = [](LPWSTR* argument) {return SafeNativeParsedArguments{argument, LocalFree };};
 
@@ -18,7 +19,6 @@ public:
 	
 	explicit BaseParser(const std::wstring& command_line);
 	NODISCARD T get_arguments() const;
-
 	virtual ~BaseParser() = default;
 
 	BaseParser(BaseParser&) = delete;
@@ -31,9 +31,7 @@ protected:
 	virtual NODISCARD T get_arguments_parsing(ArgumentsList& arguments_raw) const = 0;
 	virtual NODISCARD bool check_arguments_correction(ArgumentsList& arguments_raw) const;
 
-
 private:
-	
 	struct ParsedArguments { //ADT : just holds data without any logic!
 		SafeNativeParsedArguments arguments;
 		int arguments_count;
