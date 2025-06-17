@@ -6,7 +6,6 @@
 #include <format>
 
 
-
 class WinApiGeneralException final
 {
 public:

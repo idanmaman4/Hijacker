@@ -21,6 +21,7 @@ public:
 
 private:
 	static NODISCARD std::string create_message(const std::string&  message);
+
 	std::string m_message;
 };
 

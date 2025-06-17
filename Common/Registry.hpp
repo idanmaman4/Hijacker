@@ -3,7 +3,6 @@
 #include "defines.hpp"
 #include "WinApiGeneralException.hpp"
 
-
 #include<filesystem>
 
 
