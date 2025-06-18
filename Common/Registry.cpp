@@ -9,6 +9,7 @@ const Registry Registry::REGISTRY_LOCAL_MACHINE {HKEY_LOCAL_MACHINE};
 const Registry Registry::REGISTRY_USERS{HKEY_USERS};
 
 Registry::Registry(const Registry& parent_key, const std::filesystem::path& registry_path) : 
+	//CR: [misc] spaces
 	m_key(open_registry_key(parent_key,registry_path)), 
 	m_owns_handle(true)
 {
@@ -23,6 +24,8 @@ Registry::Registry(const std::filesystem::path& registry_path) :
 Registry::~Registry()
 {
 	try {
+		//CR: [design] In a world where all classes are properly designed, you don't need such a thing.
+		//             Your RegistryKey class should hold only RAII instances of keys and not floating handles.
 		if (m_owns_handle) {
 			RegCloseKey(m_key);
 		}		
@@ -49,6 +52,7 @@ void Registry::write(const std::wstring& value_name, const std::wstring& value_c
 Registry Registry::create_key(const std::wstring& key_name)
 {
 	HKEY result;
+	//CR: [conventions] This is not how we indent.
 	LSTATUS status = RegCreateKeyW( 
 		m_key,
 		key_name.c_str(),

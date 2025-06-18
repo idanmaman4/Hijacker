@@ -7,6 +7,20 @@
 
 #include <iostream>
 
+// This is a really good work.
+//
+// Strengths:
+// * You use all sort of features of the language.
+// * You show understanding of lifetime issues and resource management
+// * and your code looks pretty good.
+// * Some of your designs are pretty smart, even if I wouldn't choose them myself.
+//
+// Weaknesses:
+// * I did took minor things and commented on them - a lot, so you do need to improve with some of the conventions.
+// * I do want to talk about something in your Registry class
+// * I think that some of your class can be designed in a simpler way
+// 
+
 int WINAPI wWinMain(
     UNUSED _In_ HINSTANCE hInstance,
     UNUSED _In_opt_ HINSTANCE hPrevInstance,

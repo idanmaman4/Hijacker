@@ -5,6 +5,7 @@
 #include <string>
 #include <format>
 
+//CR: [naming] If it's winapi than it's not so general...
 class WinApiGeneralException final
 {
 public:

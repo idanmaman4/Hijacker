@@ -10,6 +10,7 @@ std::wstring Process::escape_string_for_commandline(const std::wstring& string_t
 std::wstring Process::create_commandline(const ArgumentsList& arguments)
 {
     std::wstringstream command_line_string;
+    //CR: [misc] space
     for (const auto& argument  : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
         command_line_string << argument;
     }
@@ -80,6 +81,7 @@ Process Process::create_debugged_process(const std::wstring& process_name, const
     if (!status) {
         throw WinApiGeneralException(L"Can't Create Process");
     }
+    //CR: [implementation] What's a better solution to prevent leaks?
     CloseHandle(process_information.hThread); // to prevent a leak...
 
     return Process(process_information.hProcess);

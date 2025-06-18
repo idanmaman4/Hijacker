@@ -10,6 +10,7 @@
 #include <vector>
 #include <filesystem>
 
+//CR: [conventions] indent
 struct InjecteeCommandLineArgs {//ADT : just holds data without any logic!
 		std::filesystem::path program_name;
 		ArgumentsList arguments;

@@ -26,6 +26,8 @@ public:
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
 
 private:
+	//CR: [conventions] So I know that this use case is the single exception for the enum class convention
+	//                  As it is more readable to use a C-enum here
 	enum class m_Arguments {
 		ProgramName = 0,
 		InjecteePath,

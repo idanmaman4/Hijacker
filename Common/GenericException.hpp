@@ -11,7 +11,9 @@ public:
 	explicit GenericException(const std::wstring& message);
 	//CR: [conventions] public functions after ctor and dtor
 	//CR: [misc] trailing whitespace
-	NODISCARD std::wstring what() const; 
+	//CR: [naming] This is not a good name for an exception message
+	NODISCARD std::wstring what() const;
+	//CR: [conventions] default implemented-ctors after ctor, dtor, public functions
 	GenericException(GenericException&) = default;
 	GenericException(GenericException&&) = default;
 	~GenericException() = default;

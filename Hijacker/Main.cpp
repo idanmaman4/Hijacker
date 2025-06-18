@@ -8,6 +8,9 @@
 #include <Process.h>
 
 int WINAPI wWinMain(
+    //CR: [misc] We prefer wrapping the param like this: UNUSED(HInstance hInsance)
+    //CR: [misc] Consider having a macro for the in param.
+    //CR: [conventions] this is not how we indent
     UNUSED _In_ HINSTANCE hInstance,
     UNUSED _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR lpCmdLine,

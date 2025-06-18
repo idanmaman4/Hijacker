@@ -5,11 +5,13 @@
 
 #include<filesystem>
 
+//CR: [naming] Not sure this class holds an entire registry, but merely a registry key.
 class Registry final
 {
 public:
 	explicit Registry(const Registry& parent_key, const std::filesystem::path& registry_path);
 	explicit Registry(const std::filesystem::path& registry_path);
+	//CR: [conventions] functions order
 	void write(const std::wstring& value_name, const std::wstring& value_conent);
 	NODISCARD Registry create_key(const std::wstring& key_name);
 	~Registry();
@@ -22,6 +24,7 @@ public:
 
 private:
 	explicit Registry(HKEY key);
+	//CR: [misc] Newline for too long line
 	static NODISCARD HKEY open_registry_key(const Registry& base_key, const std::filesystem::path& registry_path);
 
 	HKEY m_key;

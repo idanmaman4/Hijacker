@@ -11,6 +11,8 @@ void InjecteeBussinesLogic::main_logic()
     static const std::wstring MESSAGE_BOX_TILE = L"INJECTEE";
     static const std::wstring MESSAGE_BOX_MESSAGE = L"Injected...";
     UserOutput::show_messagebox(MESSAGE_BOX_TILE, MESSAGE_BOX_MESSAGE);
+    //CR: [misc] I believe that this code will look better but will work the same:
+    // Process process = Process::create_debugged_process(m_program_name.wstring(), m_arguments);
     Process process{ Process::create_debugged_process(m_program_name.wstring(), m_arguments) };
     process.stop_debugging();
     process.wait();

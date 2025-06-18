@@ -29,6 +29,7 @@ public:
 
 protected:
 	NODISCARD ArgumentsList get_argument_list() const;
+	//CR: [naming] I dont understand what this functuon do.
 	virtual NODISCARD T get_arguments_parsing(ArgumentsList& arguments_raw) const = 0;
 	//CR: [naming] I offer you a verb: validate
 	virtual NODISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const;
