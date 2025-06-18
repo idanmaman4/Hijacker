@@ -5,7 +5,6 @@
 
 #include<filesystem>
 
-
 class Registry final
 {
 public:

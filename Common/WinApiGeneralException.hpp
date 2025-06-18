@@ -5,7 +5,6 @@
 #include <string>
 #include <format>
 
-
 class WinApiGeneralException final
 {
 public:
@@ -15,9 +14,9 @@ public:
 	WinApiGeneralException(WinApiGeneralException&) = default;
 	WinApiGeneralException(WinApiGeneralException&&) = default;
 	~WinApiGeneralException() = default;
-	// [CR] Misc - remove spaces after operator
-	WinApiGeneralException& operator= (WinApiGeneralException&) = delete;
-	WinApiGeneralException& operator= (WinApiGeneralException&&) = delete;
+
+	WinApiGeneralException& operator=(WinApiGeneralException&) = delete;
+	WinApiGeneralException& operator=(WinApiGeneralException&&) = delete;
 
 private:
 	static NODISCARD std::wstring create_message(const std::wstring&  message);

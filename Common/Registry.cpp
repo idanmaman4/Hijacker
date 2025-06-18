@@ -2,7 +2,6 @@
 
 #include "Registry.hpp"
 
-
 const Registry Registry::REGISTRY_CLASSES_ROOT{HKEY_CLASSES_ROOT};
 const Registry Registry::REGISTRY_CURRENT_CONFIG{HKEY_CURRENT_CONFIG};
 const Registry Registry::REGISTRY_CURRENT_USER{HKEY_CURRENT_USER};

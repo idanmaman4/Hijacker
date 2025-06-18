@@ -11,4 +11,3 @@ void DbgHelper::show_dbg_message(const std::wstring& message)
 			}
 		}
 }
-

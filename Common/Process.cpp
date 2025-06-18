@@ -7,6 +7,15 @@ std::wstring Process::escape_string_for_commandline(const std::wstring& string_t
     return std::format(L"\"{}\"",std::regex_replace(string_to_escape, pattern, replacement));
 }
 
+std::wstring Process::create_commandline(const ArgumentsList& arguments)
+{
+    std::wstringstream command_line_string;
+    for (const auto& argument  : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
+        command_line_string << argument;
+    }
+    return std::move(command_line_string.str());
+}
+
 Process::~Process()
 {
     try {
@@ -17,9 +26,9 @@ Process::~Process()
     catch (...) {}
 }
 
-void Process::stop_debugging(DWORD process_id)
+void Process::stop_debugging()
 {
-    if (!DebugActiveProcessStop(process_id)) {
+    if (!DebugActiveProcessStop(get_process_id())) {
         throw WinApiGeneralException(L"Can't detach from process!");
     }
 }
@@ -35,27 +44,29 @@ void Process::wait(size_t time)
     }
 }
 
-Process Process::create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments)
+NODISCARD unsigned int Process::get_process_id()
 {
-    // [CR] Implementation - Split command-line generation into a function
-    STARTUPINFO startup_information;
-    PROCESS_INFORMATION process_information;
-    std::wstringstream command_line_string;
-    // [CR] Implementation - No need to zero memory - {} braced initializer zeroes structs
-    ZeroMemory(&startup_information, sizeof(startup_information));
-    startup_information.cb = sizeof(startup_information);
-    ZeroMemory(&process_information, sizeof(process_information));
-    // [CR] Naming - argument
-    for (const auto& join_arg : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
-        command_line_string << join_arg;
+    DWORD process_id = GetProcessId(m_handle);
+    if (!process_id) {
+        throw WinApiGeneralException(L"Can't get process-id from the current handle!");
     }
+
+    return process_id;
+}
+
+Process Process::create_debugged_process(const std::wstring& process_name, const ArgumentsList& arguments)
+{
+    STARTUPINFO startup_information{ 0 };
+    PROCESS_INFORMATION process_information{ 0 };
+    startup_information.cb = sizeof(startup_information);  
+    std::wstring commandline = create_commandline(arguments);
     static constexpr LPSECURITY_ATTRIBUTES DEFAULT_SECURITY_ATTRIBUTES = NULL;
     static constexpr BOOL DEFAULT_HANDLE_INHERITANCE = NULL;
     static constexpr BOOL DEFAULT_DW_TYPE = NORMAL_PRIORITY_CLASS | DEBUG_PROCESS | DEBUG_ONLY_THIS_PROCESS;
     static constexpr  LPVOID DEFAULT_INHERIT_ENVIROMENT = NULL;
     static constexpr LPCWSTR DEFAULT_CURNRENT_DIRECTORY = NULL;
     BOOL status = CreateProcessW(process_name.c_str(),
-        const_cast<LPWSTR>(command_line_string.str().c_str()),
+        const_cast<LPWSTR>(commandline.c_str()),
         DEFAULT_SECURITY_ATTRIBUTES,
         DEFAULT_SECURITY_ATTRIBUTES,
         DEFAULT_HANDLE_INHERITANCE,
@@ -69,8 +80,6 @@ Process Process::create_process_debug(const std::wstring& process_name, const Ar
         throw WinApiGeneralException(L"Can't Create Process");
     }
     CloseHandle(process_information.hThread); // to prevent a leak...
-    // [CR] Why is this "create_process_debug", and you immediately resumr it?
-    stop_debugging(process_information.dwProcessId);
 
     return Process(process_information.hProcess);
 }

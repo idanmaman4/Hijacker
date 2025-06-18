@@ -5,7 +5,6 @@
 
 #include <filesystem>
 
-
 class InjectorBusinessLogic final
 {
 public:

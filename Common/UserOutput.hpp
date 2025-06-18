@@ -1,4 +1,4 @@
- #pragma once // [CR] Remove Space
+ #pragma once
 
 #include "WinApiGeneralException.hpp"
 

@@ -5,7 +5,6 @@
 #include <string>
 #include <format>
 
-
 class GenericException final
 {
 public:
@@ -15,8 +14,8 @@ public:
 	GenericException(GenericException&&) = default;
 	~GenericException() = default;
 	
-	GenericException& operator= (GenericException&) = delete;
-	GenericException& operator= (GenericException&&) = delete;
+	GenericException& operator=(GenericException&) = delete;
+	GenericException& operator=(GenericException&&) = delete;
 
 private:
 	static NODISCARD std::wstring create_message(const std::wstring&  message);

@@ -4,11 +4,9 @@
 
 #include <string>
 
-
 class DbgHelper final
 {
 public:
-
 #ifdef _DEBUG
 	static constexpr bool is_mode_debug = true;
 #else
@@ -20,8 +18,7 @@ public:
 	~DbgHelper() = delete;
 	DbgHelper(DbgHelper&) = delete;
 	DbgHelper(DbgHelper&&) = delete;
-	DbgHelper& operator= (DbgHelper&) = delete;
-	DbgHelper& operator= (DbgHelper&&) = delete;
-
+	DbgHelper& operator=(DbgHelper&) = delete;
+	DbgHelper& operator=(DbgHelper&&) = delete;
 };
 

@@ -10,7 +10,6 @@
 #include <vector>
 #include <filesystem>
 
-
 struct InjecteeCommandLineArgs {//ADT : just holds data without any logic!
 		std::filesystem::path program_name;
 		ArgumentsList arguments;
@@ -19,12 +18,6 @@ struct InjecteeCommandLineArgs {//ADT : just holds data without any logic!
 class InjecteeCommandLineParser final : public BaseParser<InjecteeCommandLineArgs>
 {
 public:
-	
-	enum class Arguments {
-		ProgramName=0,
-		MinimumArgumentsCount,	
-	};
-
 	explicit InjecteeCommandLineParser(const std::wstring& command_line);
 	~InjecteeCommandLineParser() = default;
 
@@ -34,7 +27,12 @@ public:
 	InjecteeCommandLineParser& operator= (InjecteeCommandLineParser&&) = delete;
 
 private:
+	enum class m_Arguments {
+		ProgramName = 0,
+		MinimumArgumentsCount,
+	};
+
 	NODISCARD InjecteeCommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
-	NODISCARD bool check_arguments_correction(ArgumentsList& arguments_raw) const override;
+	NODISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };
 
