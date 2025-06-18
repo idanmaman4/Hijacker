@@ -24,4 +24,3 @@ private:
 
 	std::wstring m_message;
 };
-

@@ -13,6 +13,7 @@ std::wstring Process::create_commandline(const ArgumentsList& arguments)
     for (const auto& argument  : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
         command_line_string << argument;
     }
+
     return std::move(command_line_string.str());
 }
 

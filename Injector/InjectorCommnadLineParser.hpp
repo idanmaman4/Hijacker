@@ -32,6 +32,7 @@ private:
 		ArgumentsNum
 
 	};
+
 	NODISCARD CommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
 	NODISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };
