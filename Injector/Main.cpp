@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-
+// [CR] Remove New Line
 enum class STATUS_CODE {
     SUCCESS = 0 ,
     GENRIC_EXCEPTION , 
