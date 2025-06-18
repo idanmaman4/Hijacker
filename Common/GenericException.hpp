@@ -9,6 +9,8 @@ class GenericException final
 {
 public:
 	explicit GenericException(const std::wstring& message);
+	//CR: [conventions] public functions after ctor and dtor
+	//CR: [misc] trailing whitespace
 	NODISCARD std::wstring what() const; 
 	GenericException(GenericException&) = default;
 	GenericException(GenericException&&) = default;
