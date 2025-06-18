@@ -17,6 +17,7 @@ public:
 	Process(Process&& );
 	void wait(size_t time = INFINITE);
 	~Process();
+	// [CR] Naming - create_debugged_process?
 	static NODISCARD Process create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments); 
 	Process& operator=(Process& ) = delete;
 	Process& operator= (Process&& ) = delete;

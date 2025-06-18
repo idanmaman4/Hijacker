@@ -15,7 +15,7 @@ public:
 	WinApiGeneralException(WinApiGeneralException&) = default;
 	WinApiGeneralException(WinApiGeneralException&&) = default;
 	~WinApiGeneralException() = default;
-
+	// [CR] Misc - remove spaces after operator
 	WinApiGeneralException& operator= (WinApiGeneralException&) = delete;
 	WinApiGeneralException& operator= (WinApiGeneralException&&) = delete;
 

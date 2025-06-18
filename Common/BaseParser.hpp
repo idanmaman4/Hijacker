@@ -29,9 +29,11 @@ public:
 protected:
 	NODISCARD ArgumentsList get_argument_list() const;
 	virtual NODISCARD T get_arguments_parsing(ArgumentsList& arguments_raw) const = 0;
+	// [CR] English - correctness
 	virtual NODISCARD bool check_arguments_correction(ArgumentsList& arguments_raw) const;
 
 private:
+	// [CR] Conventions - m_
 	struct ParsedArguments { //ADT : just holds data without any logic!
 		SafeNativeParsedArguments arguments;
 		int arguments_count;
@@ -75,7 +77,9 @@ template<typename T>
 inline BaseParser<T>::ParsedArguments BaseParser<T>::parse_arguments_string(const std::wstring& command_line)
 {
 	int nubmer_of_arguments;
+	// [CR] Misc - space before function call
 	if (command_line .empty()) {
+		// [CR] Readability - extra indent
 	        throw GenericException(L"Unable To parse empty commandline!");
 	}
 	SafeNativeParsedArguments arguments = make_safe_native_parsed_arguments(CommandLineToArgvW(command_line.c_str(), &nubmer_of_arguments));

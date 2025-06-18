@@ -37,12 +37,15 @@ void Process::wait(size_t time)
 
 Process Process::create_process_debug(const std::wstring& process_name, const ArgumentsList& arguments)
 {
+    // [CR] Implementation - Split command-line generation into a function
     STARTUPINFO startup_information;
     PROCESS_INFORMATION process_information;
     std::wstringstream command_line_string;
+    // [CR] Implementation - No need to zero memory - {} braced initializer zeroes structs
     ZeroMemory(&startup_information, sizeof(startup_information));
     startup_information.cb = sizeof(startup_information);
     ZeroMemory(&process_information, sizeof(process_information));
+    // [CR] Naming - argument
     for (const auto& join_arg : arguments | std::views::transform(escape_string_for_commandline) | std::views::join_with(' ')) {
         command_line_string << join_arg;
     }
@@ -66,6 +69,7 @@ Process Process::create_process_debug(const std::wstring& process_name, const Ar
         throw WinApiGeneralException(L"Can't Create Process");
     }
     CloseHandle(process_information.hThread); // to prevent a leak...
+    // [CR] Why is this "create_process_debug", and you immediately resumr it?
     stop_debugging(process_information.dwProcessId);
 
     return Process(process_information.hProcess);

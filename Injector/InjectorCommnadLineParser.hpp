@@ -18,6 +18,7 @@ struct CommandLineArgs {//ADT : just holds data without any logic!
 class InjectorCommnadLineParser final : public BaseParser<CommandLineArgs>
 {
 public:
+	// [CR] Defensivnes - can this be private?
 	enum class Arguments {
 		ProgramName=0,
 		InjecteePath,

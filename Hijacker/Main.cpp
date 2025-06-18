@@ -7,7 +7,7 @@
 #include <Windows.h>
 #include <Process.h>
 
-
+// [CR] Implementation - redefined in both Mains
 enum class STATUS_CODE {
     SUCCESS = 0 ,
     GENERIC_ERROR , 
@@ -27,7 +27,7 @@ int WINAPI wWinMain(
         InjecteeCommandLineArgs parsed_args = cmd_parser.get_arguments();
         InjecteeBussinesLogic bussines_logic(parsed_args.program_name, parsed_args.arguments);
         bussines_logic.main_logic();
-    }
+    } // [CR] Implementation - code duplication in Both mains
     SMART_CATCH(WinApiGeneralException, STATUS_CODE::WINAPI_ERROR)
     SMART_CATCH(GenericException, STATUS_CODE::GENERIC_ERROR)
     SMART_CATCH_ELSE()
