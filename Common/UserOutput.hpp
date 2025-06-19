@@ -1,21 +1,11 @@
  #pragma once
 
-#include "WinApiGeneralException.hpp"
+#include "WinApiException.hpp"
 
 #include <string>
 
-//CR: [implementation] Why is this a class?
-class UserOutput final
+namespace UserOutput
 {
-public:
-	//CR: [naming] breathe
-	static void show_messagebox(const std::wstring& title, const std::wstring& message);
-
-	~UserOutput() = delete;
-	UserOutput() = delete;
-	UserOutput(UserOutput&) = delete;
-	UserOutput(UserOutput&&) = delete;
-	UserOutput& operator= (UserOutput&) = delete;
-	UserOutput& operator= (UserOutput&&) = delete;
+	void show_message_box(const std::wstring& title, const std::wstring& message);
 };
 

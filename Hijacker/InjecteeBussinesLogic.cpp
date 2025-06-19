@@ -2,7 +2,7 @@
 
 InjecteeBussinesLogic::InjecteeBussinesLogic(const std::filesystem::path& program_name, const ArgumentsList& arguments) : 
     m_program_name(program_name), 
-    m_arguments(arguments)
+    Arguments(arguments)
 {
 }
 
@@ -10,10 +10,8 @@ void InjecteeBussinesLogic::main_logic()
 {
     static const std::wstring MESSAGE_BOX_TILE = L"INJECTEE";
     static const std::wstring MESSAGE_BOX_MESSAGE = L"Injected...";
-    UserOutput::show_messagebox(MESSAGE_BOX_TILE, MESSAGE_BOX_MESSAGE);
-    //CR: [misc] I believe that this code will look better but will work the same:
-    // Process process = Process::create_debugged_process(m_program_name.wstring(), m_arguments);
-    Process process{ Process::create_debugged_process(m_program_name.wstring(), m_arguments) };
+    UserOutput::show_message_box(MESSAGE_BOX_TILE, MESSAGE_BOX_MESSAGE);
+    CreatedProcess process(m_program_name.wstring(), Arguments);
     process.stop_debugging();
     process.wait();
 }

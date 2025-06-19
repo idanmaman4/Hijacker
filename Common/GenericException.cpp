@@ -5,7 +5,7 @@ GenericException::GenericException(const std::wstring& message) :
 {
 }
 
-std::wstring GenericException::what() const
+std::wstring GenericException::get_message() const
 {
 	return m_message;
 }

@@ -1,19 +1,17 @@
 #pragma once
 
-#include "defines.hpp"
+#include "Defines.hpp"
 #include "GenericException.hpp"
-#include "WinApiGeneralException.hpp"
+#include "WinApiException.hpp"
 #include "BaseParser.hpp"
-#include "Process.hpp"
 
 #include <string>
 #include <vector>
 #include <filesystem>
 
-//CR: [conventions] indent
-struct InjecteeCommandLineArgs {//ADT : just holds data without any logic!
-		std::filesystem::path program_name;
-		ArgumentsList arguments;
+struct InjecteeCommandLineArgs {
+	std::filesystem::path program_name;
+	ArgumentsList arguments;
 };
 
 class InjecteeCommandLineParser final : public BaseParser<InjecteeCommandLineArgs>
@@ -28,12 +26,12 @@ public:
 	InjecteeCommandLineParser& operator= (InjecteeCommandLineParser&&) = delete;
 
 private:
-	enum class m_Arguments {
+	enum Arguments {
 		ProgramName = 0,
 		MinimumArgumentsCount,
 	};
 
-	NODISCARD InjecteeCommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
-	NODISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD InjecteeCommandLineArgs get_parsed_arguments(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };
 

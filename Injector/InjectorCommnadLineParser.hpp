@@ -1,15 +1,15 @@
 #pragma once
 
-#include "defines.hpp"
+#include "Defines.hpp"
 #include "GenericException.hpp"
-#include "WinApiGeneralException.hpp"
+#include "WinApiException.hpp"
 #include "BaseParser.hpp"
 
 #include <string>
 #include <vector>
 #include <filesystem>
 
-struct CommandLineArgs {//ADT : just holds data without any logic!
+struct CommandLineArgs {
 		std::filesystem::path program_name;
 		std::filesystem::path injectee_name;
 };
@@ -26,16 +26,14 @@ public:
 	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
 
 private:
-	//CR: [conventions] So I know that this use case is the single exception for the enum class convention
-	//                  As it is more readable to use a C-enum here
-	enum class m_Arguments {
+	enum Arguments {
 		ProgramName = 0,
 		InjecteePath,
 		ArgumentsNum
 
 	};
 
-	NODISCARD CommandLineArgs get_arguments_parsing(ArgumentsList& arguments_raw) const override;
-	NODISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD CommandLineArgs get_parsed_arguments(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };
 
