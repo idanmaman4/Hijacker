@@ -23,8 +23,8 @@ public:
 
 	InjecteeCommandLineParser(InjecteeCommandLineParser&) = delete;
 	InjecteeCommandLineParser(InjecteeCommandLineParser&&) = delete;
-	InjecteeCommandLineParser& operator= (InjecteeCommandLineParser&) = delete;
-	InjecteeCommandLineParser& operator= (InjecteeCommandLineParser&&) = delete;
+	InjecteeCommandLineParser& operator=(InjecteeCommandLineParser&) = delete;
+	InjecteeCommandLineParser& operator=(InjecteeCommandLineParser&&) = delete;
 
 private:
 	enum Arguments {

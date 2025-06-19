@@ -19,7 +19,7 @@ public:
 	ConstRegistryKey(ConstRegistryKey&) = delete;
 	ConstRegistryKey(ConstRegistryKey&&) = delete;
 	ConstRegistryKey& operator=(ConstRegistryKey&) = delete;
-	ConstRegistryKey& operator= (ConstRegistryKey&&) = delete;
+	ConstRegistryKey& operator=(ConstRegistryKey&&) = delete;
 
 private:
 	explicit ConstRegistryKey(HKEY key);

@@ -8,7 +8,7 @@
 class InjectorBusinessLogic final
 {
 public:
-	explicit InjectorBusinessLogic(const std::filesystem::path& program_name,const std::filesystem::path& injectee);
+	explicit InjectorBusinessLogic(const std::filesystem::path& program_name, const std::filesystem::path& injectee);
 	
 	~InjectorBusinessLogic() = default;
 
@@ -16,8 +16,8 @@ public:
 
 	InjectorBusinessLogic(InjectorBusinessLogic&) = delete;
 	InjectorBusinessLogic(InjectorBusinessLogic&&) = delete;
-	InjectorBusinessLogic& operator= (InjectorBusinessLogic&) = delete;
-	InjectorBusinessLogic& operator= (InjectorBusinessLogic&&) = delete;
+	InjectorBusinessLogic& operator=(InjectorBusinessLogic&) = delete;
+	InjectorBusinessLogic& operator=(InjectorBusinessLogic&&) = delete;
 
 private: 
 	std::filesystem::path m_program_name;

@@ -9,7 +9,7 @@
 class InjecteeBussinesLogic final
 {
 public:
-	explicit InjecteeBussinesLogic(const std::filesystem::path& program_name,const ArgumentsList& arguments);
+	explicit InjecteeBussinesLogic(const std::filesystem::path& program_name, const ArgumentsList& arguments);
 
 	~InjecteeBussinesLogic() = default;
 
@@ -17,8 +17,8 @@ public:
 
 	InjecteeBussinesLogic(InjecteeBussinesLogic&) = delete;
 	InjecteeBussinesLogic(InjecteeBussinesLogic&&) = delete;
-	InjecteeBussinesLogic& operator= (InjecteeBussinesLogic&) = delete;
-	InjecteeBussinesLogic& operator= (InjecteeBussinesLogic&&) = delete;
+	InjecteeBussinesLogic& operator=(InjecteeBussinesLogic&) = delete;
+	InjecteeBussinesLogic& operator=(InjecteeBussinesLogic&&) = delete;
 
 private: 
 	std::filesystem::path m_program_name;

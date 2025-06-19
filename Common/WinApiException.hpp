@@ -22,7 +22,7 @@ public:
 	WinApiException& operator=(WinApiException&&) = delete;
 
 private:
-	static NO_DISCARD std::wstring create_message(const std::wstring&  message);
+	static NO_DISCARD std::wstring create_message(const std::wstring& message);
 	static NO_DISCARD std::wstring create_message_with_ntstatus(const std::wstring& message, NTSTATUS nt_status);
 
 	std::wstring m_message;

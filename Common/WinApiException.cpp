@@ -17,7 +17,7 @@ std::wstring WinApiException::get_message() const
 
 std::wstring WinApiException::create_message(const std::wstring& message)
 {
-	return std::format(L"WinAPI GeneralException : {} Error Numnber:{}", message , GetLastError() );
+	return std::format(L"WinAPI GeneralException : {} Error Numnber:{}", message, GetLastError());
 }
 
 std::wstring WinApiException::create_message_with_ntstatus(const std::wstring& message, NTSTATUS nt_status)

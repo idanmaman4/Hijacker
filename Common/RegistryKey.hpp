@@ -24,7 +24,7 @@ public:
 	RegistryKey(RegistryKey&) = delete;
 	RegistryKey(RegistryKey&&) = delete;
 	RegistryKey& operator=(RegistryKey&) = delete;
-	RegistryKey& operator= (RegistryKey&&) = delete;
+	RegistryKey& operator=(RegistryKey&&) = delete;
 
 
 private:

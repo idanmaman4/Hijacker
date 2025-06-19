@@ -18,8 +18,8 @@ public:
 	NO_DISCARD unsigned int get_process_id();
 	
 	CreatedProcess(CreatedProcess&& CreatedProcess) = delete;
-	CreatedProcess& operator=(CreatedProcess& ) = delete;
-	CreatedProcess& operator= (CreatedProcess&& ) = delete;
+	CreatedProcess& operator=(CreatedProcess&) = delete;
+	CreatedProcess& operator=(CreatedProcess&&) = delete;
 	CreatedProcess(CreatedProcess&) = delete;
 
 private:
