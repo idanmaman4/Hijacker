@@ -2,8 +2,6 @@
 
 #include "RegistryKey.hpp"
 
-
-
 RegistryKey::RegistryKey(const ConstRegistryKey& parent_key, const std::filesystem::path& registry_path) : 
 	m_key(open_registry_key(parent_key, registry_path))
 {

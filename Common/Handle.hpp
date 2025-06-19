@@ -1,4 +1,5 @@
 #pragma once
+
 #include "DefineWinAPi.hpp"
 #include "Defines.hpp"
 #include <utility>

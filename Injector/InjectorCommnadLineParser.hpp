@@ -23,8 +23,8 @@ public:
 
 	InjectorCommnadLineParser(InjectorCommnadLineParser&) = delete;
 	InjectorCommnadLineParser(InjectorCommnadLineParser&&) = delete;
-	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&) = delete;
-	InjectorCommnadLineParser& operator= (InjectorCommnadLineParser&&) = delete;
+	InjectorCommnadLineParser& operator=(InjectorCommnadLineParser&) = delete;
+	InjectorCommnadLineParser& operator=(InjectorCommnadLineParser&&) = delete;
 
 private:
 	enum Arguments {

@@ -15,7 +15,8 @@ Handle::~Handle()
 	}
 }
 
-Handle::Handle(Handle&& handle) : m_handle(std::exchange(handle.m_handle, INVALID_HANDLE_VALUE))
+Handle::Handle(Handle&& handle) : 
+	m_handle(std::exchange(handle.m_handle, INVALID_HANDLE_VALUE))
 {
 }
 

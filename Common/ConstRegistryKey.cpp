@@ -11,6 +11,7 @@ HKEY ConstRegistryKey::get_raw_key_handle() const
 	return m_key;
 }
 
-ConstRegistryKey::ConstRegistryKey(HKEY key) : m_key(key)
+ConstRegistryKey::ConstRegistryKey(HKEY key) : 
+	m_key(key)
 {
 }
