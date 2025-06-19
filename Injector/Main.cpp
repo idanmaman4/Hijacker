@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
+static int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
     IN HINSTANCE UNUSED(hPrevInstance),
     IN LPWSTR lpCmdLine,
     IN int UNUSED(nShowCmd)) {

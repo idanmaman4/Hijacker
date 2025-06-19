@@ -20,8 +20,7 @@ public:
 	GenericException& operator=(GenericException&&) = delete;
 
 private:
-	static NO_DISCARD std::wstring create_message(const std::wstring&  message);
+	static NO_DISCARD std::wstring create_message(const std::wstring& message);
 
 	std::wstring m_message;
 };
-

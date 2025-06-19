@@ -10,8 +10,10 @@ class InjecteeBussinesLogic final
 {
 public:
 	explicit InjecteeBussinesLogic(const std::filesystem::path& program_name,const ArgumentsList& arguments);
-	void main_logic();
+
 	~InjecteeBussinesLogic() = default;
+
+	void main_logic();
 
 	InjecteeBussinesLogic(InjecteeBussinesLogic&) = delete;
 	InjecteeBussinesLogic(InjecteeBussinesLogic&&) = delete;
@@ -22,4 +24,3 @@ private:
 	std::filesystem::path m_program_name;
 	ArgumentsList Arguments;
 };
-

@@ -16,6 +16,7 @@ class BaseParser
 {
 public:
 	explicit BaseParser(const std::wstring& command_line);
+
 	virtual ~BaseParser() = default;
 
 	NO_DISCARD T get_arguments() const;

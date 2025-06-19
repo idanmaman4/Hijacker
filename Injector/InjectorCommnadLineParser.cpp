@@ -14,4 +14,3 @@ bool InjectorCommnadLineParser::check_arguments_correctness(ArgumentsList& argum
 {
     return arguments_raw.size() == static_cast<int>(ArgumentsNum);
 }
-

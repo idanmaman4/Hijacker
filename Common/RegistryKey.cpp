@@ -18,7 +18,7 @@ RegistryKey::RegistryKey(const std::filesystem::path& registry_path) :
 RegistryKey::~RegistryKey()
 {
 	try {
-			RegCloseKey(m_key);		
+		RegCloseKey(m_key);		
 	}
 	catch (...) {
 	}
@@ -57,8 +57,7 @@ RegistryKey RegistryKey::create_key(const std::wstring& key_name)
 HKEY RegistryKey::open_registry_key(const ConstRegistryKey& base_key, const std::filesystem::path& registry_path)
 {
 	HKEY result;
-	LSTATUS status = RegOpenKeyW( 
-		base_key.get_raw_key_handle(),
+	LSTATUS status = RegOpenKeyW(base_key.get_raw_key_handle(),
 		registry_path.wstring().c_str(),
 		&result
 	);

@@ -10,6 +10,7 @@ class CreatedProcess final
 {
 public:
 	CreatedProcess(const std::wstring& process_name, const ArgumentsList& arguments);
+
 	~CreatedProcess() = default;
 
 	void stop_debugging();
@@ -26,4 +27,3 @@ private:
 
 	Handle m_handle;
 };
-

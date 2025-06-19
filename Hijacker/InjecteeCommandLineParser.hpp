@@ -18,6 +18,7 @@ class InjecteeCommandLineParser final : public BaseParser<InjecteeCommandLineArg
 {
 public:
 	explicit InjecteeCommandLineParser(const std::wstring& command_line);
+
 	~InjecteeCommandLineParser() = default;
 
 	InjecteeCommandLineParser(InjecteeCommandLineParser&) = delete;
@@ -34,4 +35,3 @@ private:
 	NO_DISCARD InjecteeCommandLineArgs get_parsed_arguments(ArgumentsList& arguments_raw) const override;
 	NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };
-

@@ -20,12 +20,12 @@ void CreatedProcess::wait(size_t time)
 
 NO_DISCARD unsigned int CreatedProcess::get_process_id()
 {
-    DWORD CreatedProcess_id = GetProcessId(m_handle.get_raw_handle());
-    if (!CreatedProcess_id) {
+    DWORD process_id = GetProcessId(m_handle.get_raw_handle());
+    if (!process_id) {
         throw WinApiException(L"Can't get CreatedProcess-id from the current handle!");
     }
 
-    return CreatedProcess_id;
+    return process_id;
 }
 
 CreatedProcess::CreatedProcess(const std::wstring& process_name, const ArgumentsList& arguments) : 

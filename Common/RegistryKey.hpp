@@ -15,7 +15,6 @@ public:
 
 
 	explicit RegistryKey(const ConstRegistryKey& parent_key, const std::filesystem::path& registry_path);
-
 	explicit RegistryKey(const std::filesystem::path& registry_path);
 	~RegistryKey();
 
@@ -30,9 +29,8 @@ public:
 
 private:
 	explicit RegistryKey(HKEY key);
-	static NO_DISCARD HKEY open_registry_key(const ConstRegistryKey& base_key, 
-		const std::filesystem::path& registry_path);
+
+	static NO_DISCARD HKEY open_registry_key(const ConstRegistryKey& base_key, const std::filesystem::path& registry_path);
 
 	HKEY m_key;
 };
-

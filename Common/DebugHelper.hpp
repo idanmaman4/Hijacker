@@ -11,5 +11,6 @@ namespace DebugHelper
 #else
 	static constexpr bool is_debug_mode = false;
 #endif 
+
 	void show_debug_message(const std::wstring& message);
 };
