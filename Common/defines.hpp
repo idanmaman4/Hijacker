@@ -10,7 +10,7 @@ enum class StatusCode {
 
 #define NO_DISCARD [[nodiscard]]
 
-#define UNUSED(x) x [[maybe_unused]]
+#define UNUSED(variable) variable [[maybe_unused]]
 
 #define CATCH_ALL() catch (WinApiException& exception) { \
         DebugHelper::show_debug_message(exception.get_message());\
@@ -27,4 +27,3 @@ enum class StatusCode {
         \
         return static_cast<int>(StatusCode::UNKOWN);\
     }
-
