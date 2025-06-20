@@ -11,9 +11,6 @@
 class RegistryKey final
 {
 public:
-
-
-
 	explicit RegistryKey(const ConstRegistryKey& parent_key, const std::filesystem::path& registry_path);
 	explicit RegistryKey(const std::filesystem::path& registry_path);
 	~RegistryKey();
