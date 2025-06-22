@@ -11,7 +11,7 @@ class WinApiException final
 public:
 	explicit WinApiException(const std::wstring& message);
 	explicit WinApiException(const std::wstring& message, NTSTATUS nt_status);
-
+	// [CR] Conventions - reorder functions. Dtor after Ctors. Defaults after public APIs
 	WinApiException(WinApiException&) = default;
 	WinApiException(WinApiException&&) = default;
 	~WinApiException() = default;

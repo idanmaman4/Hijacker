@@ -5,7 +5,7 @@
 #include "WinApiException.hpp"
 #include "Handle.hpp"
 #include "StringUtils.hpp"
-
+// [CR] Naming - DebuggedProcess?
 class CreatedProcess final
 {
 public:
@@ -15,6 +15,7 @@ public:
 
 	void stop_debugging();
 	void wait(size_t time = INFINITE);
+	// [CR] Implementation - unsigned int?
 	NO_DISCARD unsigned int get_process_id();
 	
 	CreatedProcess(CreatedProcess&& CreatedProcess) = delete;

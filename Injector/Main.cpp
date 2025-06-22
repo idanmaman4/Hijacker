@@ -4,7 +4,7 @@
 #include "DebugHelper.hpp"
 
 #include <iostream>
-
+// [CR] Conventions - Align arguments to first argument
 static int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
     IN HINSTANCE UNUSED(hPrevInstance),
     IN LPWSTR lpCmdLine,

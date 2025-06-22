@@ -27,6 +27,7 @@ public:
 	InjectorCommnadLineParser& operator=(InjectorCommnadLineParser&&) = delete;
 
 private:
+	// [CR] Naming - ArgumentIndex
 	enum Arguments {
 		ProgramName = 0,
 		InjecteePath,

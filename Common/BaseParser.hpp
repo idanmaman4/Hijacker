@@ -10,7 +10,7 @@
 #include <vector>
 #include <filesystem>
 
-
+// [CR] Remove New Line
 template <typename T>
 class BaseParser
 {
@@ -49,7 +49,7 @@ private:
 		LPWSTR* m_arguments;
 		int m_arguments_count;
 	};
-	 
+	 //[CR] Remove Space 
 	static NO_DISCARD ParsedArguments parse_arguments_string(const std::wstring& command_line);
 
 	ParsedArguments m_command_parsed;
@@ -67,6 +67,7 @@ inline T BaseParser<T>::get_arguments() const
 {
 	ArgumentsList arguments = get_argument_list();
 	if (!check_arguments_correctness(arguments)) {
+		// [CR] Misc - plz?
 		throw GenericException(L"can't parse arguments! -> wrong arguments, plz check the supplied arguments...");
 	}
 

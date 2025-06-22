@@ -8,6 +8,7 @@ InjecteeBussinesLogic::InjecteeBussinesLogic(const std::filesystem::path& progra
 
 void InjecteeBussinesLogic::main_logic()
 {
+    // [CR] Misc - It is weird to use named variables when passing arguments to your own function
     static const std::wstring MESSAGE_BOX_TILE = L"INJECTEE";
     static const std::wstring MESSAGE_BOX_MESSAGE = L"Injected...";
     UserOutput::show_message_box(MESSAGE_BOX_TILE, MESSAGE_BOX_MESSAGE);

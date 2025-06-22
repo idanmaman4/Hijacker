@@ -27,7 +27,7 @@ NO_DISCARD unsigned int CreatedProcess::get_process_id()
 
     return process_id;
 }
-
+// [CR] onventions - Function implementation in declaration order
 CreatedProcess::CreatedProcess(const std::wstring& process_name, const ArgumentsList& arguments) : 
     m_handle(create_debugged_process(process_name, arguments))
 {
@@ -58,6 +58,7 @@ Handle CreatedProcess::create_debugged_process(const std::wstring& CreatedProces
     if (!status) {
         throw WinApiException(L"Can't Create CreatedProcess");
     }
+    // [CR] Implementation - Why do you static cast a HANDLE to a HANDLE
     Handle thread_handle(static_cast<HANDLE>(process_information.hThread));
 
     return Handle{ process_information.hProcess };
