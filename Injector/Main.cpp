@@ -4,11 +4,11 @@
 #include "DebugHelper.hpp"
 
 #include <iostream>
-// [CR] Conventions - Align arguments to first argument
-static int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
-    IN HINSTANCE UNUSED(hPrevInstance),
-    IN LPWSTR lpCmdLine,
-    IN int UNUSED(nShowCmd)) {
+
+int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
+                    IN HINSTANCE UNUSED(hPrevInstance),
+                    IN LPWSTR lpCmdLine,
+                    IN int UNUSED(nShowCmd)) {
     try{
         InjectorCommnadLineParser cmd_parser(lpCmdLine);
         CommandLineArgs parsed_args = cmd_parser.get_arguments();

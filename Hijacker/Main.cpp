@@ -7,10 +7,10 @@
 #include <Windows.h>
 #include <Process.h>
 
-static int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
-    IN HINSTANCE UNUSED(hPrevInstance),
-    IN LPWSTR lpCmdLine, 
-    IN int UNUSED(nShowCmd)) {
+int WINAPI wWinMain(IN HINSTANCE UNUSED(hInstance),
+                    IN HINSTANCE UNUSED(hPrevInstance),
+                    IN LPWSTR lpCmdLine, 
+                    IN int UNUSED(nShowCmd)) {
     try{
         InjecteeCommandLineParser cmd_parser(lpCmdLine);
         InjecteeCommandLineArgs parsed_args = cmd_parser.get_arguments();

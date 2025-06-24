@@ -5,10 +5,9 @@ InjectorCommnadLineParser::InjectorCommnadLineParser(const std::wstring& command
 
 }
 
-CommandLineArgs InjectorCommnadLineParser::get_parsed_arguments(ArgumentsList& arguments_raw) const
+CommandLineArgs InjectorCommnadLineParser::get_parsed_arguments(ArgumentsList&& arguments_raw) const
 {
-    // [CR] Implementation - remove the casts
-    return { std::move(arguments_raw[static_cast<int>(ProgramName)]), std::move(arguments_raw[static_cast<int>(InjecteePath)]) };
+    return {arguments_raw[static_cast<int>(ProgramName)], arguments_raw[static_cast<int>(InjecteePath)]};
 }
 
 bool InjectorCommnadLineParser::check_arguments_correctness(ArgumentsList& arguments_raw) const

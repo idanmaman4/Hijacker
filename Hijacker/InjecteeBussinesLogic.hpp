@@ -2,7 +2,7 @@
 
 #include "DefineTypes.hpp"
 #include "UserOutput.hpp"
-#include "CreatedProcess.hpp"
+#include "DebuggedProcess.hpp"
 
 #include <filesystem>
 
@@ -11,9 +11,9 @@ class InjecteeBussinesLogic final
 public:
 	explicit InjecteeBussinesLogic(const std::filesystem::path& program_name, const ArgumentsList& arguments);
 
-	~InjecteeBussinesLogic() = default;
-
 	void main_logic();
+
+	~InjecteeBussinesLogic() = default;
 
 	InjecteeBussinesLogic(InjecteeBussinesLogic&) = delete;
 	InjecteeBussinesLogic(InjecteeBussinesLogic&&) = delete;

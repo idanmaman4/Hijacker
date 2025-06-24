@@ -15,27 +15,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseParser.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ConstRegistryKey.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DebugHelper.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Defines.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DefineTypes.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DefineWinApi.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GenericException.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Handle.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CreatedProcess.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)DebuggedProcess.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RegistryKey.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StringUtils.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommandLineUtils.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UserOutput.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)WinApiException.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ConstRegistryKey.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DebugHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GenericException.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Handle.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CreatedProcess.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)DebuggedProcess.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RegistryKey.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StringUtils.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CommandLineUtils.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UserOutput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinApiException.cpp" />
   </ItemGroup>

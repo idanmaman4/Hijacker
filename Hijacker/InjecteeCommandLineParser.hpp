@@ -27,14 +27,11 @@ public:
 	InjecteeCommandLineParser& operator=(InjecteeCommandLineParser&&) = delete;
 
 private:
-	enum Arguments {
+	enum ArgumentsIndex {
 		ProgramName = 0,
 		MinimumArgumentsCount,
 	};
 
-	// [CR] Naming - raw_arguments
-	// [CR] Implementation - I don't like the pass-by-reference here. 
-	//		If you move the value, pass by &&, or take to copy.
-	NO_DISCARD InjecteeCommandLineArgs get_parsed_arguments(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD InjecteeCommandLineArgs get_parsed_arguments(ArgumentsList&& arguments_raw) const override;
 	NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };

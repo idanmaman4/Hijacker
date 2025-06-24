@@ -4,7 +4,7 @@ InjecteeCommandLineParser::InjecteeCommandLineParser(const std::wstring& command
 {
 }
 
-InjecteeCommandLineArgs InjecteeCommandLineParser::get_parsed_arguments(ArgumentsList& arguments_raw) const
+InjecteeCommandLineArgs InjecteeCommandLineParser::get_parsed_arguments(ArgumentsList&& arguments_raw) const
 {
 	std::filesystem::path program_name = arguments_raw[static_cast<int>(ProgramName)];
 

@@ -27,14 +27,13 @@ public:
 	InjectorCommnadLineParser& operator=(InjectorCommnadLineParser&&) = delete;
 
 private:
-	// [CR] Naming - ArgumentIndex
-	enum Arguments {
+	enum ArgumentIndex {
 		ProgramName = 0,
 		InjecteePath,
 		ArgumentsNum
 
 	};
 
-	NO_DISCARD CommandLineArgs get_parsed_arguments(ArgumentsList& arguments_raw) const override;
+	NO_DISCARD CommandLineArgs get_parsed_arguments(ArgumentsList&& arguments_raw) const override;
 	NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const override;
 };

@@ -10,16 +10,15 @@
 #include <vector>
 #include <filesystem>
 
-// [CR] Remove New Line
 template <typename T>
 class BaseParser
 {
 public:
 	explicit BaseParser(const std::wstring& command_line);
 
-	virtual ~BaseParser() = default;
-
 	NO_DISCARD T get_arguments() const;
+
+	virtual ~BaseParser() = default;
 
 	BaseParser(BaseParser&) = delete;
 	BaseParser(BaseParser&&) = delete;
@@ -28,7 +27,7 @@ public:
 
 protected:
 	NO_DISCARD ArgumentsList get_argument_list() const;
-	virtual NO_DISCARD T get_parsed_arguments(ArgumentsList& arguments_raw) const = 0;
+	virtual NO_DISCARD T get_parsed_arguments(ArgumentsList&& arguments_raw) const = 0;
 	virtual NO_DISCARD bool check_arguments_correctness(ArgumentsList& arguments_raw) const = 0;
 
 private:
@@ -45,11 +44,11 @@ private:
 		ParsedArguments& operator=(ParsedArguments&) = delete;
 		ParsedArguments& operator=(ParsedArguments&&) = delete;
 
-	private: 
+	private:
 		LPWSTR* m_arguments;
 		int m_arguments_count;
 	};
-	 //[CR] Remove Space 
+
 	static NO_DISCARD ParsedArguments parse_arguments_string(const std::wstring& command_line);
 
 	ParsedArguments m_command_parsed;
@@ -63,15 +62,39 @@ inline BaseParser<T>::BaseParser(const std::wstring& command_line) :
 }
 
 template<typename T>
+inline BaseParser<T>::ParsedArguments::ParsedArguments(LPWSTR* arguments, int arguments_count) : m_arguments(arguments), m_arguments_count(arguments_count)
+{
+}
+
+template<typename T>
+inline BaseParser<T>::ParsedArguments::ParsedArguments(ParsedArguments&& parsed_arguments) : 
+	m_arguments(std::exchange(parsed_arguments.m_arguments, nullptr)),
+	m_arguments_count(std::exchange(parsed_arguments.m_arguments_count, 0))
+{
+}
+
+template<typename T>
+inline BaseParser<T>::ParsedArguments::~ParsedArguments()
+{
+	try {
+		if (m_arguments != nullptr) {
+			LocalFree(m_arguments);
+		}
+	}
+	catch (...) {
+	}
+
+}
+
+template<typename T>
 inline T BaseParser<T>::get_arguments() const
 {
 	ArgumentsList arguments = get_argument_list();
 	if (!check_arguments_correctness(arguments)) {
-		// [CR] Misc - plz?
-		throw GenericException(L"can't parse arguments! -> wrong arguments, plz check the supplied arguments...");
+		throw GenericException(L"can't parse arguments! -> wrong arguments, check the supplied arguments...");
 	}
 
-	return get_parsed_arguments(arguments);
+	return get_parsed_arguments(std::move(arguments));
 }
 
 template<typename T>
@@ -94,31 +117,6 @@ inline BaseParser<T>::ParsedArguments BaseParser<T>::parse_arguments_string(cons
     }
 
     return BaseParser<T>::ParsedArguments{command_parsed, arguments_count};
-}
-
-template<typename T>
-inline BaseParser<T>::ParsedArguments::ParsedArguments(LPWSTR* arguments, int arguments_count) : m_arguments(arguments), m_arguments_count(arguments_count)
-{
-}
-
-template<typename T>
-inline BaseParser<T>::ParsedArguments::~ParsedArguments()
-{
-	try {
-		if (m_arguments != nullptr) {
-			LocalFree(m_arguments);
-		}
-	}
-	catch (...) {
-	}
-
-}
-
-template<typename T>
-inline BaseParser<T>::ParsedArguments::ParsedArguments(ParsedArguments&& parsed_arguments) : 
-	m_arguments(std::exchange(parsed_arguments.m_arguments, nullptr)),
-	m_arguments_count(std::exchange(parsed_arguments.m_arguments_count, 0))
-{
 }
 
 template<typename T>

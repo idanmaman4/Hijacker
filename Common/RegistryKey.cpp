@@ -2,14 +2,20 @@
 
 #include "RegistryKey.hpp"
 
-RegistryKey::RegistryKey(const ConstRegistryKey& parent_key, const std::filesystem::path& registry_path) : 
+const RegistryKey::ConstRegistryKey RegistryKey::ConstRegistryKey::REGISTRY_CLASSES_ROOT{HKEY_CLASSES_ROOT};
+const RegistryKey::ConstRegistryKey RegistryKey::ConstRegistryKey::REGISTRY_CURRENT_CONFIG{HKEY_CURRENT_CONFIG};
+const RegistryKey::ConstRegistryKey RegistryKey::ConstRegistryKey::REGISTRY_CURRENT_USER{HKEY_CURRENT_USER};
+const RegistryKey::ConstRegistryKey RegistryKey::ConstRegistryKey::REGISTRY_LOCAL_MACHINE {HKEY_LOCAL_MACHINE};
+const RegistryKey::ConstRegistryKey RegistryKey::ConstRegistryKey::REGISTRY_USERS{HKEY_USERS};
+
+RegistryKey::RegistryKey(const RegistryKey::ConstRegistryKey& parent_key, const std::filesystem::path& registry_path) : 
 	m_key(open_registry_key(parent_key, registry_path))
 {
 }
 
 
 RegistryKey::RegistryKey(const std::filesystem::path& registry_path) :
-	m_key(open_registry_key(ConstRegistryKey::REGISTRY_CURRENT_USER, registry_path))
+	m_key(open_registry_key(RegistryKey::ConstRegistryKey::REGISTRY_CURRENT_USER, registry_path))
 {
 }
 
@@ -20,6 +26,16 @@ RegistryKey::~RegistryKey()
 	}
 	catch (...) {
 	}
+}
+
+RegistryKey::RegistryKey(HKEY key) : 
+	m_key(key) 
+{
+}
+
+RegistryKey::ConstRegistryKey::ConstRegistryKey(HKEY key) :
+	m_key(key)
+{
 }
 
 void RegistryKey::write(const std::wstring& value_name, const std::wstring& value_conent)
@@ -52,10 +68,10 @@ RegistryKey RegistryKey::create_key(const std::wstring& key_name)
 	return RegistryKey{ result };
 }
 
-HKEY RegistryKey::open_registry_key(const ConstRegistryKey& base_key, const std::filesystem::path& registry_path)
+HKEY RegistryKey::open_registry_key(const RegistryKey::ConstRegistryKey& base_key, const std::filesystem::path& registry_path)
 {
 	HKEY result;
-	LSTATUS status = RegOpenKeyW(base_key.get_raw_key_handle(),
+	LSTATUS status = RegOpenKeyW(base_key.get_raw_handle(),
 		registry_path.wstring().c_str(),
 		&result
 	);
@@ -66,7 +82,7 @@ HKEY RegistryKey::open_registry_key(const ConstRegistryKey& base_key, const std:
 	return result;
 }
 
-RegistryKey::RegistryKey(HKEY key) : 
-	m_key(key) 
+NO_DISCARD HKEY RegistryKey::ConstRegistryKey::get_raw_handle() const
 {
+	return m_key;
 }
